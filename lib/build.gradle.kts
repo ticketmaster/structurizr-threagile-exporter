@@ -14,6 +14,10 @@ plugins {
     `java-library`
 }
 
+description = "Exports Structurizr models to threagile format"
+group = "com.ticketmaster.structurizr"
+version = "1.0.1-SNAPSHOT"
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -25,6 +29,9 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation(libs.guava)
+
+    implementation(libs.structurizr.export)
+    testImplementation(libs.structurizr.client)
 }
 
 testing {
