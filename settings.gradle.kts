@@ -18,7 +18,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             plugin("kotlin", "org.jetbrains.kotlin.jvm").version("1.9.22")
-            library("structurizr-export", "com.structurizr", "structurizr-export").version("1.19.0")
+            library("structurizr-export", "com.structurizr", "structurizr-export").version("2.1.1")
             library("structurizr-client", "com.structurizr", "structurizr-client").version("1.29.0")
         }
     }
