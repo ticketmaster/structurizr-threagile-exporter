@@ -178,9 +178,6 @@ public class ThreagileConverterTest {
             CommunicationLink customTechnologyCommunicationLink = communicationLinks.get("to-ta-18");
             assertNotNull(customTechnologyCommunicationLink);
             assertEquals("custom-protocol", customTechnologyCommunicationLink.getProtocol());
-
-
-
         });
     }
 }

@@ -102,43 +102,11 @@ public class ThreagileConverter {
         element.getElement().getRelationships().forEach((relationship) -> {
             String targetId = techAssetPrefix + '-' + relationship.getDestinationId();
 
-            CommunicationLink link = new CommunicationLink();
-            link.setTarget(targetId);
-            link.setDescription(relationship.getDescription());
-            link.setProtocol(ToThreagileProtocol(relationship.getTechnology()));
-            link.setAuthentication("none");
-            link.setAuthorization("none");
-            link.setTags(new String[] {});
-            link.setVpn(false);
-            link.setIp_filtered(false);
-            link.setReadonly(false);
-            link.setUsage("business");
-            link.setData_assets_sent(new String[] {});
-            link.setData_assets_received(new String[] {});
+            CommunicationLinkBuilder builder = new CommunicationLinkBuilder();
+            CommunicationLink link = builder.From(relationship).WithDefault().WithTargetId(targetId).Build();
 
             result.put("to-" + targetId, link);
         });
         return result;
-    }
-
-    private static String ToThreagileProtocol(String technology) {
-        if (technology == null) {
-            return "http";
-        }
-        switch (technology.toLowerCase()) {
-            case "i/o":
-                return "local-file-access";
-            case "wss/graphql":
-                return "wss";
-            case "":
-            case "browser":
-            case "tcp":
-            case "http/browser":
-            case "application/json":
-            case "graphql":
-                return "http";
-            default:
-                return technology.toLowerCase();
-        }
     }
 }
