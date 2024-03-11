@@ -6,6 +6,16 @@ public class SharedRuntime {
     private String[] tags;
     private String[] technical_assets_running;
 
+    public SharedRuntime() {
+    }
+
+    public SharedRuntime(String id, String description, String[] tags, String[] technical_assets_running) {
+        this.id = id;
+        this.description = description;
+        this.tags = tags;
+        this.technical_assets_running = technical_assets_running;
+    }
+
     public String getId() {
         return id;
     }

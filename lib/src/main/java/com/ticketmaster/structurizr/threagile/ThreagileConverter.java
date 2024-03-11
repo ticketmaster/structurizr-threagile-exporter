@@ -37,16 +37,14 @@ public class ThreagileConverter {
     }
 
     private static Model ProcessElements(HashSet<ThreagileMapElement> elements) {
-        Model result = new Model();
-
-        Set<String> tags = result.getTags_available();
-
+        Set<String> tags = new HashSet<String>();
         elements.forEach((element) -> {
             element.getElement().getTagsAsSet().forEach((tag) -> {
                 tags.add(tag);
             });
         });
 
-        return result;
+        ThreagileModelBuilder modelBuilder = new ThreagileModelBuilder();
+        return modelBuilder.WithDefaultValues().WithTagsAvailable(tags).Build();
     }
 }

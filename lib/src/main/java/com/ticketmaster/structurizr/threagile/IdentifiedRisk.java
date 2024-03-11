@@ -12,6 +12,22 @@ public class IdentifiedRisk {
     private String most_relevant_trust_boundary;
     private String most_relevant_shared_runtime;
 
+    public IdentifiedRisk() {
+    }
+
+    public IdentifiedRisk(String severity, String exploitation_likelihood, String exploitation_impact, String data_breach_probability, String[] data_breach_technical_assets, String most_relevant_data_asset, String most_relevant_technical_asset, String most_relevant_communication_link, String most_relevant_trust_boundary, String most_relevant_shared_runtime) {
+        this.severity = severity;
+        this.exploitation_likelihood = exploitation_likelihood;
+        this.exploitation_impact = exploitation_impact;
+        this.data_breach_probability = data_breach_probability;
+        this.data_breach_technical_assets = data_breach_technical_assets;
+        this.most_relevant_data_asset = most_relevant_data_asset;
+        this.most_relevant_technical_asset = most_relevant_technical_asset;
+        this.most_relevant_communication_link = most_relevant_communication_link;
+        this.most_relevant_trust_boundary = most_relevant_trust_boundary;
+        this.most_relevant_shared_runtime = most_relevant_shared_runtime;
+    }
+
     public String getSeverity() {
         return severity;
     }

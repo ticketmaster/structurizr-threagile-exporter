@@ -7,6 +7,17 @@ public class RiskTracking {
     private String date;
     private String checked_by;
 
+    public RiskTracking() {
+    }
+
+    public RiskTracking(String status, String justification, String ticket, String date, String checked_by) {
+        this.status = status;
+        this.justification = justification;
+        this.ticket = ticket;
+        this.date = date;
+        this.checked_by = checked_by;
+    }
+
     public String getStatus() {
         return status;
     }

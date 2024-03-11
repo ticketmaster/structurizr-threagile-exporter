@@ -20,6 +20,29 @@ public class IndividualRiskCategory {
     private int cwe;
     private Map<String, IdentifiedRisk> risks_identified;
 
+    public IndividualRiskCategory() {
+    }
+
+    public IndividualRiskCategory(String id, String description, String impact, String asvs, String cheat_sheet, String action, String mitigation, String check, String function, String stride, String detection,
+                                    String risk_assessment, String false_positives, boolean model_failure_possible_reason, int cwe, Map<String, IdentifiedRisk> risks_identified) {
+            this.id = id;
+            this.description = description;
+            this.impact = impact;
+            this.asvs = asvs;
+            this.cheat_sheet = cheat_sheet;
+            this.action = action;
+            this.mitigation = mitigation;
+            this.check = check;
+            this.function = function;
+            this.stride = stride;
+            this.detection_logic = detection;
+            this.risk_assessment = risk_assessment;
+            this.false_positives = false_positives;
+            this.model_failure_possible_reason = model_failure_possible_reason;
+            this.cwe = cwe;
+            this.risks_identified = risks_identified;
+    }
+
     public String getId() {
         return id;
     }
@@ -72,7 +95,7 @@ public class IndividualRiskCategory {
         return false_positives;
     }
 
-    public boolean isModel_failure_possible_reason() {
+    public boolean getModel_failure_possible_reason() {
         return model_failure_possible_reason;
     }
 

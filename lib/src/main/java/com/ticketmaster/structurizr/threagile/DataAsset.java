@@ -13,6 +13,23 @@ public class DataAsset {
     private String availability;
     private String justification_cia_rating;
 
+    public DataAsset() {
+    }
+
+    public DataAsset(String id, String description, String usage, String[] tags, String origin, String owner, String quantity, String confidentiality, String integrity, String availability, String justification_cia_rating) {
+        this.id = id;
+        this.description = description;
+        this.usage = usage;
+        this.tags = tags;
+        this.origin = origin;
+        this.owner = owner;
+        this.quantity = quantity;
+        this.confidentiality = confidentiality;
+        this.integrity = integrity;
+        this.availability = availability;
+        this.justification_cia_rating = justification_cia_rating;
+    }
+
     public String getId() {
         return id;
     }
