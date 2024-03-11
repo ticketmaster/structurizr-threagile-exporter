@@ -4,8 +4,16 @@ import com.structurizr.Workspace;
 import com.structurizr.export.AbstractWorkspaceExporter;
 import com.structurizr.export.WorkspaceExport;
 
+import org.yaml.snakeyaml.Yaml;
+
 public class ThreagileWorkspaceExporter extends AbstractWorkspaceExporter {
     public WorkspaceExport export(Workspace workspace) {
-        return new ThreagileWorkspaceExport("Some yaml");
+        ThreagileConverter threagileConverter = new ThreagileConverter();
+        Model threagileModel = threagileConverter.Convert(workspace);
+
+        Yaml yaml = new Yaml();
+        String yamlString = yaml.dumpAsMap(threagileModel);
+        return new ThreagileWorkspaceExport(yamlString);
     }
+    
 }
