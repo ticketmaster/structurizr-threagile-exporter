@@ -1,4 +1,4 @@
-package com.ticketmaster.structurizr;
+package com.ticketmaster.structurizr.threagile;
 
 import com.structurizr.export.WorkspaceExport;
 

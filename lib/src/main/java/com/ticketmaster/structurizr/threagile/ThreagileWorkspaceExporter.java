@@ -1,4 +1,4 @@
-package com.ticketmaster.structurizr;
+package com.ticketmaster.structurizr.threagile;
 
 import com.structurizr.Workspace;
 import com.structurizr.export.AbstractWorkspaceExporter;
@@ -8,5 +8,4 @@ public class ThreagileWorkspaceExporter extends AbstractWorkspaceExporter {
     public WorkspaceExport export(Workspace workspace) {
         return new ThreagileWorkspaceExport("Some yaml");
     }
-    
 }
