@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class ThreagileModelBuilder {
@@ -64,12 +65,12 @@ public class ThreagileModelBuilder {
         return this;
     }
 
-    public ThreagileModelBuilder WithTechnicalAssets(HashMap<String, TechnicalAsset> technicalAssets) {
+    public ThreagileModelBuilder WithTechnicalAssets(Map<String, TechnicalAsset> technicalAssets) {
         model.setTechnical_assets(technicalAssets);
         return this;
     }
 
-    public ThreagileModelBuilder WithTrustBoundaries(HashMap<String, TrustBoundary> trustBoundaries) {
+    public ThreagileModelBuilder WithTrustBoundaries(Map<String, TrustBoundary> trustBoundaries) {
         model.setTrust_boundaries(trustBoundaries);
         return this;
     }

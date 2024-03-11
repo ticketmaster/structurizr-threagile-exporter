@@ -1,0 +1,116 @@
+{
+    "id": "0",
+    "name": "Example of various communication protocols",
+    "description": "This is an example of a duplicated name",
+    "model": {
+        "people": [
+            {
+                "id": "1",
+                "name": "User",
+                "description": "A user of the chat application"
+            }
+        ],
+        "softwareSystems": [
+            {
+                "id": "2",
+                "name": "The Chat Application",
+                "relationships": [
+                    {
+                        "id": "3",
+                        "description": "Receive messages from",
+                        "sourceId": "2",
+                        "destinationId": "1"
+                    },
+                    {
+                        "id": "5",
+                        "description": "Read messages from local file system",
+                        "sourceId": "2",
+                        "destinationId": "4",
+                        "technology": "i/o"
+                    },
+                    {
+                        "id": "7",
+                        "description": "Send message over wss",
+                        "sourceId": "2",
+                        "destinationId": "6",
+                        "technology": "WSS/GraphQL"
+                    },
+                    {
+                        "id": "9",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "8",
+                        "technology": "browser"
+                    },
+                    {
+                        "id": "11",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "10",
+                        "technology": "TCP"
+                    },
+                    {
+                        "id": "13",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "12",
+                        "technology": "http/browser"
+                    },
+                    {
+                        "id": "15",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "14",
+                        "technology": "application/json"
+                    },
+                    {
+                        "id": "17",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "16",
+                        "technology": "GraphQL"
+                    },
+                    {
+                        "id": "19",
+                        "description": "Send message to",
+                        "sourceId": "2",
+                        "destinationId": "18",
+                        "technology": "custom-protocol"
+                    }
+                ]
+            },
+            {
+                "id": "4",
+                "name": "Other system to communicate via i/o"
+            },
+            {
+                "id": "6",
+                "name": "Other system to communicate via wss"
+            },
+            {
+                "id": "8",
+                "name": "Other system to communicate via browser"
+            },
+            {
+                "id": "10",
+                "name": "Other system to communicate via tcp"
+            },
+            {
+                "id": "12",
+                "name": "Other system to communicate via http"
+            },
+            {
+                "id": "14",
+                "name": "Other system to communicate via json"
+            },
+            {
+                "id": "16",
+                "name": "Other system to communicate via graphql"
+            },
+            {
+                "id": "18",
+                "name": "Other system to communicate via custom technology"
+            }
+        ]
+    }
+}

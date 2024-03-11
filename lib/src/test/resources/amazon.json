@@ -3,6 +3,14 @@
   "name": "Amazon Web Services Example",
   "description": "An example AWS deployment architecture.",
   "model": {
+    "people": [
+      {
+        "id": "0",
+        "tags": "Element,Person",
+        "name": "Employee",
+        "description": "Uses the Spring PetClinic application to view and manage information regarding the veterinarians, the clients, and their pets."
+      }
+    ],
     "softwareSystems": [
       {
         "id": "1",
@@ -16,7 +24,16 @@
             "tags": "Element,Container,Database",
             "name": "Database",
             "description": "Stores information regarding the veterinarians, the clients, and their pets.",
-            "technology": "Relational database schema"
+            "technology": "Relational database schema",
+            "components": [
+              {
+                "id": "18",
+                "tags": "Element,Component",
+                "name": "Database Schema",
+                "description": "Stores information regarding the veterinarians, the clients, and their pets.",
+                "technology": "Relational database schema"
+              }
+            ]
           },
           {
             "id": "2",
@@ -178,8 +195,7 @@
         "infrastructureNodes": []
       }
     ],
-    "customElements": [],
-    "people": []
+    "customElements": []
   },
   "documentation": {
     "sections": [],

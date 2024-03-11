@@ -1,18 +1,17 @@
 package com.ticketmaster.structurizr.threagile;
 
 import com.structurizr.model.Element;
-import com.structurizr.model.ModelItem;
 
 public class ThreagileMapElement {
-    private ModelItem element;
+    private Element element;
     private String threagileSize;
 
-    public ThreagileMapElement(ModelItem element, String threagileSize) {
+    public ThreagileMapElement(Element element, String threagileSize) {
         this.element = element;
         this.threagileSize = threagileSize;
     }
     
-    public ModelItem getElement() {
+    public Element getElement() {
         return element;
     }
 

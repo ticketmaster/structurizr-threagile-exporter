@@ -1,22 +1,27 @@
 package com.ticketmaster.structurizr.threagile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.structurizr.Workspace;
 
 public class ThreagileConverter {
+    private static final String techAssetPrefix = "ta";
+
     public Model Convert(Workspace workspace) {
         if (workspace == null) {
             return null;
         }
 
-        HashSet<ThreagileMapElement> elements = GetElements(workspace);
+        ArrayList<ThreagileMapElement> elements = GetElements(workspace);
         return ProcessElements(elements);
     }
 
-    private static HashSet<ThreagileMapElement> GetElements(Workspace workspace) {
-        HashSet<ThreagileMapElement> result = new HashSet<>();
+    private static ArrayList<ThreagileMapElement> GetElements(Workspace workspace) {
+        ArrayList<ThreagileMapElement> result = new ArrayList<>();
         workspace.getModel().getPeople().forEach((person) -> {
             result.add(new ThreagileMapElement(person, "component"));
         });
@@ -36,15 +41,104 @@ public class ThreagileConverter {
         return result;
     }
 
-    private static Model ProcessElements(HashSet<ThreagileMapElement> elements) {
+    private static Model ProcessElements(ArrayList<ThreagileMapElement> elements) {
+        Map<String, TechnicalAsset> technicalAssets = new HashMap<String, TechnicalAsset>();
         Set<String> tags = new HashSet<String>();
         elements.forEach((element) -> {
             element.getElement().getTagsAsSet().forEach((tag) -> {
                 tags.add(tag);
             });
+
+            String name = GetUniqueTechnicalAssetName(technicalAssets, element.getElement().getName());
+            technicalAssets.put(name, ConvertElementToTechnicalAsset(element));
         });
 
         ThreagileModelBuilder modelBuilder = new ThreagileModelBuilder();
-        return modelBuilder.WithDefaultValues().WithTagsAvailable(tags).Build();
+        return modelBuilder.WithDefaultValues().WithTagsAvailable(tags).WithTechnicalAssets(technicalAssets).Build();
+    }
+
+    private static String GetUniqueTechnicalAssetName(Map<String, TechnicalAsset> technicalAssets, String name) {
+        String result = name;
+        Integer suffix = 2;
+        while (technicalAssets.containsKey(result)) {
+            result = name + "-" + suffix;
+            suffix++;
+        }
+        return result;
+    }
+
+    private static TechnicalAsset ConvertElementToTechnicalAsset(ThreagileMapElement element) {
+        TechnicalAsset asset = new TechnicalAsset();
+        asset.setId(techAssetPrefix + "-" + element.getElement().getId());
+        asset.setDescription(element.getElement().getDescription());
+        asset.setType(element.getThreagileSize());
+        asset.setUsage("business");
+        asset.setUsed_as_client_by_human(true);
+        asset.setOut_of_scope(false);
+        asset.setJustification_out_of_scope("");
+        asset.setTechnology("web-server");
+        asset.setTags(element.getElement().getTagsAsSet());
+        asset.setInternet(true);
+        asset.setMachine("virtual");
+        asset.setEncryption("none");
+        asset.setOwner("Some Owner");
+        asset.setConfidentiality("confidential");
+        asset.setIntegrity("important");
+        asset.setAvailability("important");
+        asset.setJustification_cia_rating("Some Justification");
+        asset.setSize(element.getThreagileSize());
+        asset.setMulti_tenant(false);
+        asset.setRedundant(false);
+        asset.setCustom_developed_parts(false);
+        asset.setData_assets_processed(new String[] {});
+        asset.setData_assets_stored(new String[] {});
+        asset.setData_formats_accepted(new String[] {});
+        asset.setCommunication_links(ConvertElementToCommunicationLinks(element));
+        return asset;
+    }
+
+    private static Map<String, CommunicationLink> ConvertElementToCommunicationLinks(ThreagileMapElement element) {
+        Map<String, CommunicationLink> result = new HashMap<String, CommunicationLink>();
+        element.getElement().getRelationships().forEach((relationship) -> {
+            String targetId = techAssetPrefix + '-' + relationship.getDestinationId();
+
+            CommunicationLink link = new CommunicationLink();
+            link.setTarget(targetId);
+            link.setDescription(relationship.getDescription());
+            link.setProtocol(ToThreagileProtocol(relationship.getTechnology()));
+            link.setAuthentication("none");
+            link.setAuthorization("none");
+            link.setTags(new String[] {});
+            link.setVpn(false);
+            link.setIp_filtered(false);
+            link.setReadonly(false);
+            link.setUsage("business");
+            link.setData_assets_sent(new String[] {});
+            link.setData_assets_received(new String[] {});
+
+            result.put("to-" + targetId, link);
+        });
+        return result;
+    }
+
+    private static String ToThreagileProtocol(String technology) {
+        if (technology == null) {
+            return "http";
+        }
+        switch (technology.toLowerCase()) {
+            case "i/o":
+                return "local-file-access";
+            case "wss/graphql":
+                return "wss";
+            case "":
+            case "browser":
+            case "tcp":
+            case "http/browser":
+            case "application/json":
+            case "graphql":
+                return "http";
+            default:
+                return technology.toLowerCase();
+        }
     }
 }
