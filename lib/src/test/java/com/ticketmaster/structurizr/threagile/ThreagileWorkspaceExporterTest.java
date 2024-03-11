@@ -28,6 +28,6 @@ public class ThreagileWorkspaceExporterTest {
                 "technical_overview: null\n" + //
                 "threagile_version: null\n" + //
                 "title: null\n" + //
-                "trust_boundaries: null\n", workspaceExport.getDefinition(), "Expected to get same value as given in export method");
+                "trust_boundaries: null\n", workspaceExport.getDefinition(), "Expected to get null fields");
     }
 }
