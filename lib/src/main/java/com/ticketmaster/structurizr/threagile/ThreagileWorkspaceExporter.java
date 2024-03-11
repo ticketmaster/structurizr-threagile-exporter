@@ -10,6 +10,9 @@ public class ThreagileWorkspaceExporter extends AbstractWorkspaceExporter {
     public WorkspaceExport export(Workspace workspace) {
         ThreagileConverter threagileConverter = new ThreagileConverter();
         Model threagileModel = threagileConverter.Convert(workspace);
+        if (threagileModel == null) {
+            return new ThreagileWorkspaceExport("Empty workspace. Nothing to export.");
+        }
 
         Yaml yaml = new Yaml();
         String yamlString = yaml.dumpAsMap(threagileModel);

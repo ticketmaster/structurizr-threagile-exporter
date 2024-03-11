@@ -1,6 +1,7 @@
 package com.ticketmaster.structurizr.threagile;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Model {
     private String threagile_version;
@@ -13,13 +14,26 @@ public class Model {
     private Map<String, String> questions;
     private Map<String, String> abuse_cases;
     private Map<String, String> security_requirements;
-    private Map<String, String> tags_available;
+    private Set<String> tags_available;
     private Map<String, DataAsset> data_assets;
     private Map<String, TechnicalAsset> technical_assets;
     private Map<String, TrustBoundary> trust_boundaries;
     private Map<String, SharedRuntime> shared_runtimes;
     private Map<String, IndividualRiskCategory> individual_risk_categories;
     private Map<String, RiskTracking> risk_tracking;
+
+    public Model() {
+        questions = new java.util.HashMap<>();
+        abuse_cases = new java.util.HashMap<>();
+        security_requirements = new java.util.HashMap<>();
+        tags_available = new java.util.HashSet<>();
+        data_assets = new java.util.HashMap<>();
+        technical_assets = new java.util.HashMap<>();
+        trust_boundaries = new java.util.HashMap<>();
+        shared_runtimes = new java.util.HashMap<>();
+        individual_risk_categories = new java.util.HashMap<>();
+        risk_tracking = new java.util.HashMap<>();
+    }
 
     public String getThreagile_version() {
         return threagile_version;
@@ -61,7 +75,7 @@ public class Model {
         return security_requirements;
     }
 
-    public Map<String, String> getTags_available() {
+    public Set<String> getTags_available() {
         return tags_available;
     }
 
@@ -115,45 +129,5 @@ public class Model {
 
     public void setTechnical_overview(String technical_overview) {
         this.technical_overview = technical_overview;
-    }
-
-    public void setQuestions(Map<String, String> questions) {
-        this.questions = questions;
-    }
-
-    public void setAbuse_cases(Map<String, String> abuse_cases) {
-        this.abuse_cases = abuse_cases;
-    }
-
-    public void setSecurity_requirements(Map<String, String> security_requirements) {
-        this.security_requirements = security_requirements;
-    }
-
-    public void setTags_available(Map<String, String> tags_available) {
-        this.tags_available = tags_available;
-    }
-
-    public void setData_assets(Map<String, DataAsset> data_assets) {
-        this.data_assets = data_assets;
-    }
-
-    public void setTechnical_assets(Map<String, TechnicalAsset> technical_assets) {
-        this.technical_assets = technical_assets;
-    }
-
-    public void setTrust_boundaries(Map<String, TrustBoundary> trust_boundaries) {
-        this.trust_boundaries = trust_boundaries;
-    }
-
-    public void setShared_runtimes(Map<String, SharedRuntime> shared_runtimes) {
-        this.shared_runtimes = shared_runtimes;
-    }
-
-    public void setIndividual_risk_categories(Map<String, IndividualRiskCategory> individual_risk_categories) {
-        this.individual_risk_categories = individual_risk_categories;
-    }
-
-    public void setRisk_tracking(Map<String, RiskTracking> risk_tracking) {
-        this.risk_tracking = risk_tracking;
     }
 }
