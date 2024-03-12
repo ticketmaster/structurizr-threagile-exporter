@@ -45,7 +45,7 @@ public class ThreagileModelBuilderTest {
             .Build();
 
         assertEquals("THIS IS GENERATED THREAGILE MODEL OUT OF DSL", model.getAuthor().getName());
-        assertEquals("https://github.com/Threagile/threagile", model.getAuthor().getHomePage());
+        assertEquals("https://github.com/Threagile/threagile", model.getAuthor().getHomepage());
     }
 
     @Test

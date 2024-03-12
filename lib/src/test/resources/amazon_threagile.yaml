@@ -1,7 +1,7 @@
 abuse_cases:
   Some Abuse Case: Some Description
 author:
-  homePage: https://github.com/Threagile/threagile
+  homepage: https://github.com/Threagile/threagile
   name: THIS IS GENERATED THREAGILE MODEL OUT OF DSL
 business_criticality: important
 business_overview:
