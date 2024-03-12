@@ -20,7 +20,7 @@ data_assets:
     quantity: many
     tags: []
     usage: devops
-date: '2024-03-12'
+date: PLACEHOLDER
 individual_risk_categories:
   Some Individual Risk Example:
     action: Some Text Describing the Action...
@@ -57,7 +57,7 @@ questions:
 risk_tracking:
   container-baseimage-backdooring@fan:
     checked_by: Generated User
-    date: '2024-03-12'
+    date: PLACEHOLDER
     justification: Risk accepted as tolerable
     status: accepted
     ticket: XYZ-1234

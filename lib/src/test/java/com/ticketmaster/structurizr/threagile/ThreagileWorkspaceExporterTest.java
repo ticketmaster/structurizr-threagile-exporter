@@ -37,14 +37,31 @@ public class ThreagileWorkspaceExporterTest {
 
             String expectedResult = new String(Files.readAllBytes(Paths.get("./src/test/resources/amazon_threagile.yaml")));
 
-            assertYamlEquals(expectedResult, workspaceExport.getDefinition(), "Expecting the same yaml");
+            assertYamlEquals(expectedResult, workspaceExport.getDefinition(), "Expecting the same yaml", new String[] { "date" });
         });
     }
 
-    void assertYamlEquals(String expectedYaml, String actualYaml, String message) {
+    void assertYamlEquals(String expectedYaml, String actualYaml, String message, String[] ignoreFields) {
         Yaml yaml = new Yaml();
         Map<String, Object> expected = yaml.load(expectedYaml);
+        excludeFields(expected, ignoreFields);
+
         Map<String, Object> actual = yaml.load(actualYaml);
+        excludeFields(actual, ignoreFields);
+        
         assertEquals(expected, actual, message);
+    }
+
+    @SuppressWarnings("unchecked")
+    void excludeFields(Map<String, Object> map, String[] fields) {
+        for (String field : fields) {
+            map.remove(field);
+        }
+
+        map.forEach((key, value) -> {
+            if (value instanceof Map) {
+                excludeFields((Map<String, Object>) value, fields);
+            }
+        });
     }
 }
