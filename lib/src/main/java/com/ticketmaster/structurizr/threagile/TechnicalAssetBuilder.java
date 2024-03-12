@@ -1,7 +1,7 @@
 package com.ticketmaster.structurizr.threagile;
 
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 public class TechnicalAssetBuilder {
     private TechnicalAsset technicalAsset;
@@ -44,7 +44,7 @@ public class TechnicalAssetBuilder {
         return this;
     }
 
-    public TechnicalAssetBuilder WithTags(Set<String> tags) {
+    public TechnicalAssetBuilder WithTags(ArrayList<String> tags) {
         technicalAsset.setTags(tags);
         return this;
     }

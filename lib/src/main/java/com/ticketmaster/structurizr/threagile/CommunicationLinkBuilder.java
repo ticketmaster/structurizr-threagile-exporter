@@ -42,6 +42,10 @@ public class CommunicationLinkBuilder {
             return "http";
         }
         switch (technology.toLowerCase()) {
+            case "mysql protocol/ssl":
+                return "odbc-encrypted";
+            case "relational database schema":
+                return "odbc";
             case "i/o":
                 return "local-file-access";
             case "wss/graphql":

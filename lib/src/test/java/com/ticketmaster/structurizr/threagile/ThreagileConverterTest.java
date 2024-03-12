@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class ThreagileConverterTest {
             Model model = threagileConverter.Convert(workspace);
             assertNotNull(model);
 
-            Set<String> tags = model.getTags_available();
+            ArrayList<String> tags = model.getTags_available();
             assertEquals(7, tags.size(), "Expecting 7 tags available");
             assertEquals(true, tags.contains("Element"), "Expecting tag 'Element' available");
             assertEquals(true, tags.contains("Container"), "Expecting tag 'Container' available");

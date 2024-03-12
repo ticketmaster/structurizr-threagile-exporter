@@ -1,7 +1,7 @@
 package com.ticketmaster.structurizr.threagile;
 
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 public class TechnicalAsset {
     private String id;
@@ -13,7 +13,7 @@ public class TechnicalAsset {
     private String justification_out_of_scope;
     private String size;
     private String technology;
-    private Set<String> tags;
+    private ArrayList<String> tags;
     private boolean internet;
     private String machine;
     private String encryption;
@@ -66,7 +66,7 @@ public class TechnicalAsset {
         return technology;
     }
 
-    public Set<String> getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
@@ -166,7 +166,7 @@ public class TechnicalAsset {
         this.technology = technology;
     }
 
-    public void setTags(Set<String> tags) {
+    public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 

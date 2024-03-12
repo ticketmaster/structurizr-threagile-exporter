@@ -54,7 +54,7 @@ public class ThreagileConverter {
         });
 
         ThreagileModelBuilder modelBuilder = new ThreagileModelBuilder();
-        return modelBuilder.WithDefaultValues().WithTagsAvailable(tags).WithTechnicalAssets(technicalAssets).Build();
+        return modelBuilder.WithDefaultValues().WithTagsAvailable(ToArray(tags)).WithTechnicalAssets(technicalAssets).Build();
     }
 
     private static String GetUniqueTechnicalAssetName(Map<String, TechnicalAsset> technicalAssets, String name) {
@@ -74,7 +74,7 @@ public class ThreagileConverter {
             .WithDefault()
             .WithId(techAssetPrefix + "-" + element.getElement().getId())
             .WithDescription(element.getElement().getDescription())
-            .WithTags(element.getElement().getTagsAsSet())
+            .WithTags(ToArray(element.getElement().getTagsAsSet()))
             .WithSize(element.getThreagileSize())
             .WithCommunicationLinks(ConvertElementToCommunicationLinks(element))
             .Build();
@@ -90,6 +90,15 @@ public class ThreagileConverter {
             CommunicationLink link = builder.From(relationship).WithDefault().WithTargetId(targetId).Build();
 
             result.put("to-" + targetId, link);
+        });
+        return result;
+    }
+
+    // TODO: move to utils class
+    private static ArrayList<String> ToArray(Set<String> set) {
+        ArrayList<String> result = new ArrayList<String>();
+        set.forEach((item) -> {
+            result.add(item);
         });
         return result;
     }

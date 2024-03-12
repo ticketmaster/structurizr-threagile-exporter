@@ -1,7 +1,7 @@
 package com.ticketmaster.structurizr.threagile;
 
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 public class Model {
     private String threagile_version;
@@ -15,7 +15,7 @@ public class Model {
     private Map<String, String> questions;
     private Map<String, String> abuse_cases;
     private Map<String, String> security_requirements;
-    private Set<String> tags_available;
+    private ArrayList<String> tags_available;
     private Map<String, DataAsset> data_assets;
     private Map<String, TechnicalAsset> technical_assets;
     private Map<String, TrustBoundary> trust_boundaries;
@@ -27,7 +27,7 @@ public class Model {
         questions = new java.util.HashMap<>();
         abuse_cases = new java.util.HashMap<>();
         security_requirements = new java.util.HashMap<>();
-        tags_available = new java.util.HashSet<>();
+        tags_available = new java.util.ArrayList<>();
         data_assets = new java.util.HashMap<>();
         technical_assets = new java.util.HashMap<>();
         trust_boundaries = new java.util.HashMap<>();
@@ -76,7 +76,7 @@ public class Model {
         return security_requirements;
     }
 
-    public Set<String> getTags_available() {
+    public ArrayList<String> getTags_available() {
         return tags_available;
     }
 
@@ -148,7 +148,7 @@ public class Model {
         this.security_requirements = security_requirements;
     }
 
-    public void setTags_available(Set<String> tags_available) {
+    public void setTags_available(ArrayList<String> tags_available) {
         this.tags_available = tags_available;
     }
 

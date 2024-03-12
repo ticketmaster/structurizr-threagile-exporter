@@ -1,11 +1,10 @@
 package com.ticketmaster.structurizr.threagile;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class ThreagileModelBuilder {
     private Model model;
@@ -60,7 +59,7 @@ public class ThreagileModelBuilder {
         return this;
     }
 
-    public ThreagileModelBuilder WithTagsAvailable(Set<String> tagsAvailable) {
+    public ThreagileModelBuilder WithTagsAvailable(ArrayList<String> tagsAvailable) {
         model.setTags_available(tagsAvailable);
         return this;
     }

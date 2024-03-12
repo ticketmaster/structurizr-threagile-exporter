@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TechnicalAssetBuilderTest {
     
@@ -77,7 +78,7 @@ public class TechnicalAssetBuilderTest {
         TechnicalAssetBuilder technicalAssetBuilder = new TechnicalAssetBuilder();
         
         TechnicalAsset technicalAsset = technicalAssetBuilder
-            .WithTags(Set.of("test"))
+            .WithTags(new ArrayList<String>(Arrays.asList("test")))
             .Build();
 
         assertEquals(true, technicalAsset.getTags().contains("test"), "Expecting tag 'test' available");

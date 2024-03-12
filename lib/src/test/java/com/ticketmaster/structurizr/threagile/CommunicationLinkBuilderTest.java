@@ -45,6 +45,8 @@ public class CommunicationLinkBuilderTest {
         testCases.put("http/browser", "http");
         testCases.put("application/json", "http");
         testCases.put("graphql", "http");
+        testCases.put("Relational database schema", "odbc");
+        testCases.put("MySQL Protocol/SSL", "odbc-encrypted");
         testCases.put("some-technology", "some-technology");
 
         for (String technology : testCases.keySet()) {
