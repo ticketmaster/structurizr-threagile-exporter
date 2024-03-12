@@ -46,11 +46,11 @@ public class TechnicalAsset {
         return usage;
     }
 
-    public boolean isUsed_as_client_by_human() {
+    public boolean getUsed_as_client_by_human() {
         return used_as_client_by_human;
     }
 
-    public boolean isOut_of_scope() {
+    public boolean getOut_of_scope() {
         return out_of_scope;
     }
 

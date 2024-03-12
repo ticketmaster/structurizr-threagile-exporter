@@ -68,32 +68,16 @@ public class ThreagileConverter {
     }
 
     private static TechnicalAsset ConvertElementToTechnicalAsset(ThreagileMapElement element) {
-        TechnicalAsset asset = new TechnicalAsset();
-        asset.setId(techAssetPrefix + "-" + element.getElement().getId());
-        asset.setDescription(element.getElement().getDescription());
-        asset.setType(element.getThreagileSize());
-        asset.setUsage("business");
-        asset.setUsed_as_client_by_human(true);
-        asset.setOut_of_scope(false);
-        asset.setJustification_out_of_scope("");
-        asset.setTechnology("web-server");
-        asset.setTags(element.getElement().getTagsAsSet());
-        asset.setInternet(true);
-        asset.setMachine("virtual");
-        asset.setEncryption("none");
-        asset.setOwner("Some Owner");
-        asset.setConfidentiality("confidential");
-        asset.setIntegrity("important");
-        asset.setAvailability("important");
-        asset.setJustification_cia_rating("Some Justification");
-        asset.setSize(element.getThreagileSize());
-        asset.setMulti_tenant(false);
-        asset.setRedundant(false);
-        asset.setCustom_developed_parts(false);
-        asset.setData_assets_processed(new String[] {});
-        asset.setData_assets_stored(new String[] {});
-        asset.setData_formats_accepted(new String[] {});
-        asset.setCommunication_links(ConvertElementToCommunicationLinks(element));
+        TechnicalAssetBuilder builder = new TechnicalAssetBuilder();
+
+        TechnicalAsset asset = builder
+            .WithDefault()
+            .WithId(techAssetPrefix + "-" + element.getElement().getId())
+            .WithDescription(element.getElement().getDescription())
+            .WithTags(element.getElement().getTagsAsSet())
+            .WithSize(element.getThreagileSize())
+            .WithCommunicationLinks(ConvertElementToCommunicationLinks(element))
+            .Build();
         return asset;
     }
 

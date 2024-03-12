@@ -64,12 +64,12 @@ public class ThreagileConverterTest {
             assertNotNull(softwareSystemTechnicalAsset);
             assertEquals("ta-1", softwareSystemTechnicalAsset.getId());
             assertEquals(0, softwareSystemTechnicalAsset.getCommunication_links().size(), "Expecting 0 communication links");
-            assertEquals("system", softwareSystemTechnicalAsset.getType());
+            assertEquals("system", softwareSystemTechnicalAsset.getSize());
 
             TechnicalAsset applicationTechnicalAsset = technicalAssets.get("Web Application");
             assertNotNull(applicationTechnicalAsset);
             assertEquals("ta-2", applicationTechnicalAsset.getId());
-            assertEquals("application", applicationTechnicalAsset.getType());
+            assertEquals("application", applicationTechnicalAsset.getSize());
 
 
             Map<String, CommunicationLink> communicationLinks = applicationTechnicalAsset.getCommunication_links();
@@ -82,19 +82,19 @@ public class ThreagileConverterTest {
             assertNotNull(databaseTechnicalAsset);
             assertEquals("ta-3", databaseTechnicalAsset.getId());
             assertEquals(0, databaseTechnicalAsset.getCommunication_links().size(), "Expecting 0 communication links");
-            assertEquals("application", databaseTechnicalAsset.getType());
+            assertEquals("application", databaseTechnicalAsset.getSize());
 
             TechnicalAsset personTechnicalAsset = technicalAssets.get("Employee");
             assertNotNull(personTechnicalAsset);
             assertEquals("ta-0", personTechnicalAsset.getId());
             assertEquals(0, personTechnicalAsset.getCommunication_links().size(), "Expecting 0 communication links");
-            assertEquals("component", personTechnicalAsset.getType());
+            assertEquals("component", personTechnicalAsset.getSize());
 
             TechnicalAsset databaseSchemaTechnicalAsset = technicalAssets.get("Database Schema");
             assertNotNull(databaseSchemaTechnicalAsset);
             assertEquals("ta-18", databaseSchemaTechnicalAsset.getId());
             assertEquals(0, databaseSchemaTechnicalAsset.getCommunication_links().size(), "Expecting 0 communication links");
-            assertEquals("component", databaseSchemaTechnicalAsset.getType());
+            assertEquals("component", databaseSchemaTechnicalAsset.getSize());
         });
     }
 
@@ -112,17 +112,17 @@ public class ThreagileConverterTest {
             TechnicalAsset technicalAsset1 = technicalAssets.get("The Application");
             assertNotNull(technicalAsset1);
             assertEquals("ta-1", technicalAsset1.getId());
-            assertEquals("system", technicalAsset1.getType());
+            assertEquals("system", technicalAsset1.getSize());
 
             TechnicalAsset technicalAsset2 = technicalAssets.get("The Application-2");
             assertNotNull(technicalAsset2);
             assertEquals("ta-2", technicalAsset2.getId());
-            assertEquals("application", technicalAsset2.getType());
+            assertEquals("application", technicalAsset2.getSize());
 
             TechnicalAsset technicalAsset3 = technicalAssets.get("The Application-3");
             assertNotNull(technicalAsset3);
             assertEquals("ta-3", technicalAsset3.getId());
-            assertEquals("component", technicalAsset3.getType());
+            assertEquals("component", technicalAsset3.getSize());
         });
     }
 
