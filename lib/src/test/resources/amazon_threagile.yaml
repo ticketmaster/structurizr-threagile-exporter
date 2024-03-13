@@ -255,8 +255,8 @@ trust_boundaries:
     tags: null
     type: execution-environment
     technical_assets_inside:
+    - ta-2
     - ta-3
     - ta-18
-    - ta-2
     - ta-1
     trust_boundaries_nested: null
