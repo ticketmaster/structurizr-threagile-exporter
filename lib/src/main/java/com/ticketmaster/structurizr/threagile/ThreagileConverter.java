@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import com.structurizr.Workspace;
+import com.structurizr.model.Element;
 
 public class ThreagileConverter {
     private static final String techAssetPrefix = "ta";
@@ -27,13 +29,19 @@ public class ThreagileConverter {
         });
 
         workspace.getModel().getSoftwareSystems().forEach((softwareSystem) -> {
-            result.add(new ThreagileMapElement(softwareSystem, "system"));
+            ThreagileMapElement system = new ThreagileMapElement(softwareSystem, "system");
+            result.add(system);
 
             softwareSystem.getContainers().forEach((container) -> {
-                result.add(new ThreagileMapElement(container, "application"));
+                ThreagileMapElement application = new ThreagileMapElement(container, "application");
+                result.add(application);
+                system.addChild(application);
 
                 container.getComponents().forEach((component) -> {
-                    result.add(new ThreagileMapElement(component, "component"));
+                    ThreagileMapElement componentMapElement = new ThreagileMapElement(component, "component");
+                    result.add(componentMapElement);
+                    system.addChild(componentMapElement);
+                    application.addChild(componentMapElement);
                 });
             });
         });
@@ -43,6 +51,8 @@ public class ThreagileConverter {
 
     private static Model ProcessElements(ArrayList<ThreagileMapElement> elements) {
         Map<String, TechnicalAsset> technicalAssets = new HashMap<String, TechnicalAsset>();
+        Map<String, TrustBoundary> trustBoundaries = new HashMap<String, TrustBoundary>();
+        Map<String, SharedRuntime> sharedRuntimes = new HashMap<String, SharedRuntime>();
         Set<String> tags = new HashSet<String>();
         elements.forEach((element) -> {
             element.getElement().getTagsAsSet().forEach((tag) -> {
@@ -50,11 +60,40 @@ public class ThreagileConverter {
             });
 
             String name = GetUniqueTechnicalAssetName(technicalAssets, element.getElement().getName());
-            technicalAssets.put(name, ConvertElementToTechnicalAsset(element));
+            TechnicalAsset asset = ConvertElementToTechnicalAsset(element);
+            technicalAssets.put(name, asset);
+
+            if (element.getChildren().size() > 0 && element.getThreagileSize() == "application") {
+                SharedRuntime sharedRuntime = new SharedRuntime();
+                sharedRuntime.setId("sr-" + element.getElement().getId());
+                sharedRuntime.setDescription("Inside application which " + element.getElement().getDescription());
+                sharedRuntime.setTechnical_assets_running(GetTechnicalAssetIds(element)) ;
+                sharedRuntimes.put("application-" + asset.getId(), sharedRuntime);
+            }
+
+            if (element.getChildren().size() > 0 && element.getThreagileSize() == "system") {
+                TrustBoundary trustBoundary = new TrustBoundary();
+                trustBoundary.setId("tb-" + element.getElement().getId());
+                trustBoundary.setType("execution-environment");
+                trustBoundary.setDescription("Inside software system which " + element.getElement().getDescription());
+                trustBoundary.setTechnical_assets_inside(GetTechnicalAssetIds(element));
+                trustBoundaries.put("software-system-" + asset.getId(), trustBoundary);
+            }
         });
 
         ThreagileModelBuilder modelBuilder = new ThreagileModelBuilder();
-        return modelBuilder.WithDefaultValues().WithTagsAvailable(ToArray(tags)).WithTechnicalAssets(technicalAssets).Build();
+        return modelBuilder.WithDefaultValues()
+                  .WithTagsAvailable(ToArray(tags))
+                  .WithTechnicalAssets(technicalAssets)
+                  .WithSharedRuntimes(sharedRuntimes)
+                  .WithTrustBoundaries(trustBoundaries)
+                  .Build();
+    }
+
+    private static String[] GetTechnicalAssetIds(ThreagileMapElement element) {
+        return Stream.concat(element.getChildren().stream(), Stream.of(element)).map((child) -> {
+            return GetId(child.getElement());
+        }).toArray(String[]::new);
     }
 
     private static String GetUniqueTechnicalAssetName(Map<String, TechnicalAsset> technicalAssets, String name) {
@@ -72,7 +111,7 @@ public class ThreagileConverter {
 
         TechnicalAsset asset = builder
             .WithDefault()
-            .WithId(techAssetPrefix + "-" + element.getElement().getId())
+            .WithId(GetId(element.getElement()))
             .WithDescription(element.getElement().getDescription())
             .WithTags(ToArray(element.getElement().getTagsAsSet()))
             .WithSize(element.getThreagileSize())
@@ -80,6 +119,10 @@ public class ThreagileConverter {
             .Build();
         return asset;
     }
+
+    private static String GetId(Element element) {
+        return techAssetPrefix + "-" + element.getId();
+    } 
 
     private static Map<String, CommunicationLink> ConvertElementToCommunicationLinks(ThreagileMapElement element) {
         Map<String, CommunicationLink> result = new HashMap<String, CommunicationLink>();

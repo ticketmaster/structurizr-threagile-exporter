@@ -20,7 +20,7 @@ data_assets:
     quantity: many
     tags: []
     usage: devops
-date: PLACEHOLDER
+date: '2024-03-12'
 individual_risk_categories:
   Some Individual Risk Example:
     action: Some Text Describing the Action...
@@ -57,18 +57,21 @@ questions:
 risk_tracking:
   container-baseimage-backdooring@fan:
     checked_by: Generated User
-    date: PLACEHOLDER
+    date: '2024-03-12'
     justification: Risk accepted as tolerable
     status: accepted
     ticket: XYZ-1234
 security_requirements:
   Some Security Requirement: Some Description
 shared_runtimes:
-  Some Shared Runtime:
-    description: Some Description
-    id: some-runtime
-    tags: []
-    technical_assets_running: []
+  application-ta-3:
+    description: Inside application which Stores information regarding the veterinarians,
+      the clients, and their pets.
+    id: sr-3
+    tags: null
+    technical_assets_running:
+    - ta-18
+    - ta-3
 tags_available:
 - Container
 - Software System
@@ -243,4 +246,17 @@ technical_overview:
   images: []
 threagile_version: 1.0.0
 title: Generated Threagile Model
-trust_boundaries: {}
+trust_boundaries:
+  software-system-ta-1:
+    data_assets: null
+    description: Inside software system which Allows employees to view and manage
+      information regarding the veterinarians, the clients, and their pets.
+    id: tb-1
+    tags: null
+    type: execution-environment
+    technical_assets_inside:
+    - ta-3
+    - ta-18
+    - ta-2
+    - ta-1
+    trust_boundaries_nested: null

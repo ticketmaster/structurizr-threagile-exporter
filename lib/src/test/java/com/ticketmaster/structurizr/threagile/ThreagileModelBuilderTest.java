@@ -163,13 +163,7 @@ public class ThreagileModelBuilderTest {
             .WithDefaultValues()
             .Build();
 
-        assertEquals(1, model.getShared_runtimes().size());
-
-        SharedRuntime sharedRuntime = model.getShared_runtimes().get("Some Shared Runtime");
-        assertEquals("some-runtime", sharedRuntime.getId());
-        assertEquals("Some Description", sharedRuntime.getDescription());
-        assertEquals(0, sharedRuntime.getTags().length);
-        assertEquals(0, sharedRuntime.getTechnical_assets_running().length);
+        assertEquals(0, model.getShared_runtimes().size());
     }
 
     @Test

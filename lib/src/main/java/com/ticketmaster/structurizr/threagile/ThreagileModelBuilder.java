@@ -36,9 +36,6 @@ public class ThreagileModelBuilder {
         model.setData_assets(new HashMap<String, DataAsset>() {{
             put("Some Data Asset", new DataAsset("some-data-asset", "Some Description", "devops", new String[]{}, "Some Origin", "Some Owner", "many", "confidential", "important", "important", "Some Justification CIA Rating"));
         }});
-        model.setShared_runtimes(new HashMap<String, SharedRuntime>() {{
-            put("Some Shared Runtime", new SharedRuntime("some-runtime", "Some Description", new String[]{}, new String[]{}));
-        }});
         model.setIndividual_risk_categories(new HashMap<String, IndividualRiskCategory>() {{
             put("Some Individual Risk Example", new IndividualRiskCategory("something-strange", 
             "Some Description", 
@@ -71,6 +68,11 @@ public class ThreagileModelBuilder {
 
     public ThreagileModelBuilder WithTrustBoundaries(Map<String, TrustBoundary> trustBoundaries) {
         model.setTrust_boundaries(trustBoundaries);
+        return this;
+    }
+
+    public ThreagileModelBuilder WithSharedRuntimes(Map<String, SharedRuntime> sharedRuntimes) {
+        model.setShared_runtimes(sharedRuntimes);
         return this;
     }
 

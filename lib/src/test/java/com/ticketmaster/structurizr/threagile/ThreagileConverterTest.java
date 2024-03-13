@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,6 +96,54 @@ public class ThreagileConverterTest {
             assertEquals("ta-18", databaseSchemaTechnicalAsset.getId());
             assertEquals(0, databaseSchemaTechnicalAsset.getCommunication_links().size(), "Expecting 0 communication links");
             assertEquals("component", databaseSchemaTechnicalAsset.getSize());
+        });
+    }
+
+    @Test
+    void convertExpectGetTrustBoundariesBasedOnAllElementsInSofwareSystems() {
+        assertDoesNotThrow(() -> {
+            ThreagileConverter threagileConverter = new ThreagileConverter();
+            Workspace workspace = WorkspaceUtils.loadWorkspaceFromJson(new File("./src/test/resources/amazon.json"));
+            Model model = threagileConverter.Convert(workspace);
+            assertNotNull(model);
+
+            Map<String, TrustBoundary> trustBoundaries = model.getTrust_boundaries();
+            assertEquals(1, trustBoundaries.size(), "Expecting 1 trust boundary");
+
+            TrustBoundary trustBoundary = trustBoundaries.get("software-system-ta-1");
+            assertNotNull(trustBoundary);
+            assertEquals("tb-1", trustBoundary.getId());
+            assertEquals("Inside software system which Allows employees to view and manage information regarding the veterinarians, the clients, and their pets.", trustBoundary.getDescription());
+
+            ArrayList<String> technicalAssets = new ArrayList<String>(Arrays.asList(trustBoundary.getTechnical_assets_inside()));
+            assertEquals(4, technicalAssets.size(), "Expecting 4 technical assets");
+            assertEquals(true, technicalAssets.contains("ta-1"), "Expecting technical asset Spring PetClinic with id 'ta-1' available");
+            assertEquals(true, technicalAssets.contains("ta-3"), "Expecting technical asset Database with id 'ta-3' available");
+            assertEquals(true, technicalAssets.contains("ta-2"), "Expecting technical asset Web Application with id 'ta-2' available");
+            assertEquals(true, technicalAssets.contains("ta-18"), "Expecting technical asset Database Schema with id 'ta-18' available");
+        });
+    }
+
+    @Test
+    void convertExpectGetSharedRuntimesBasedOnAllElementsInContainer() {
+        assertDoesNotThrow(() -> {
+            ThreagileConverter threagileConverter = new ThreagileConverter();
+            Workspace workspace = WorkspaceUtils.loadWorkspaceFromJson(new File("./src/test/resources/amazon.json"));
+            Model model = threagileConverter.Convert(workspace);
+            assertNotNull(model);
+
+            Map<String, SharedRuntime> sharedRuntimes = model.getShared_runtimes();
+            assertEquals(1, sharedRuntimes.size(), "Expecting 1 shared runtime");
+
+            SharedRuntime sharedRuntime = sharedRuntimes.get("application-ta-3");
+            assertNotNull(sharedRuntime);
+            assertEquals("sr-3", sharedRuntime.getId());
+            assertEquals("Inside application which Stores information regarding the veterinarians, the clients, and their pets.", sharedRuntime.getDescription());
+
+            ArrayList<String> technicalAssets = new ArrayList<String>(Arrays.asList(sharedRuntime.getTechnical_assets_running()));
+            assertEquals(2, technicalAssets.size(), "Expecting 2 technical assets");
+            assertEquals(true, technicalAssets.contains("ta-3"), "Expecting technical asset Database with id 'ta-3' available");
+            assertEquals(true, technicalAssets.contains("ta-18"), "Expecting technical asset Database Schema with id 'ta-18' available");
         });
     }
 
