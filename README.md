@@ -8,3 +8,16 @@ and is available on Maven Central, for inclusion in your own Java applications:
 
 - groupId: `com.ticketmaster.structurizr`
 - artifactId: `threagile`
+
+
+# Requirements
+
+- Java 21
+- Java SDK 21
+
+# Building a Jar File
+
+`mvn clean package`
+
+This will produce a `threagile-x.x-SNAPSHOT.jar` file in /target
+

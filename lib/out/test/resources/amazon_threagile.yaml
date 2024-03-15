@@ -1,0 +1,262 @@
+abuse_cases:
+  Some Abuse Case: Some Description
+author:
+  homepage: https://github.com/Threagile/threagile
+  name: THIS IS GENERATED THREAGILE MODEL OUT OF DSL
+business_criticality: important
+business_overview:
+  description: Some more <i>demo text</i> here and even images...
+  images: []
+data_assets:
+  Some Data Asset:
+    availability: important
+    confidentiality: confidential
+    description: Some Description
+    id: some-data-asset
+    integrity: important
+    justification_cia_rating: Some Justification CIA Rating
+    origin: Some Origin
+    owner: Some Owner
+    quantity: many
+    tags: []
+    usage: devops
+date: '2024-03-12'
+individual_risk_categories:
+  Some Individual Risk Example:
+    action: Some Text Describing the Action...
+    asvs: Some ASVS
+    cheat_sheet: https://example.com
+    check: Check if XYZ
+    cwe: 693
+    description: Some Description
+    detection_logic: Some Text Describing the Detection Logic...
+    false_positives: Some Text Describing the Most Common Types of False Positives...
+    function: business-side
+    id: something-strange
+    impact: Some Impact
+    mitigation: Some Text Describing the Mitigation...
+    model_failure_possible_reason: false
+    risk_assessment: Some Text Describing the Risk Assessment...
+    risks_identified:
+      Example Individual Risk:
+        data_breach_probability: possible
+        data_breach_technical_assets: []
+        exploitation_impact: medium
+        exploitation_likelihood: likely
+        most_relevant_communication_link: ''
+        most_relevant_data_asset: some-data-asset
+        most_relevant_shared_runtime: ''
+        most_relevant_technical_asset: ''
+        most_relevant_trust_boundary: ''
+        severity: critical
+    stride: repudiation
+management_summary_content: Just some <b>more</b> custom summary possible here...
+questions:
+  Some question without an answer: ''
+  Some question with an answer: Some Answer
+risk_tracking:
+  container-baseimage-backdooring@fan:
+    checked_by: Generated User
+    date: '2024-03-12'
+    justification: Risk accepted as tolerable
+    status: accepted
+    ticket: XYZ-1234
+security_requirements:
+  Some Security Requirement: Some Description
+shared_runtimes:
+  application-ta-3:
+    description: Inside application which Stores information regarding the veterinarians,
+      the clients, and their pets.
+    id: sr-3
+    tags: null
+    technical_assets_running:
+    - ta-18
+    - ta-3
+tags_available:
+- Container
+- Software System
+- Element
+- Database
+- Component
+- Person
+- Application
+technical_assets:
+  Spring PetClinic:
+    availability: important
+    communication_links: {}
+    confidentiality: confidential
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted: []
+    description: Allows employees to view and manage information regarding the veterinarians,
+      the clients, and their pets.
+    encryption: none
+    id: ta-1
+    integrity: important
+    internet: true
+    justification_cia_rating: Some Justification
+    justification_out_of_scope: ''
+    machine: virtual
+    multi_tenant: false
+    out_of_scope: false
+    owner: Some Owner
+    redundant: false
+    size: system
+    tags:
+    - Element
+    - Software System
+    technology: web-server
+    type: process
+    usage: business
+    used_as_client_by_human: true
+  Employee:
+    availability: important
+    communication_links: {}
+    confidentiality: confidential
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted: []
+    description: Uses the Spring PetClinic application to view and manage information
+      regarding the veterinarians, the clients, and their pets.
+    encryption: none
+    id: ta-0
+    integrity: important
+    internet: true
+    justification_cia_rating: Some Justification
+    justification_out_of_scope: ''
+    machine: virtual
+    multi_tenant: false
+    out_of_scope: false
+    owner: Some Owner
+    redundant: false
+    size: component
+    tags:
+    - Element
+    - Person
+    technology: web-server
+    type: process
+    usage: business
+    used_as_client_by_human: true
+  Database Schema:
+    availability: important
+    communication_links: {}
+    confidentiality: confidential
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted: []
+    description: Stores information regarding the veterinarians, the clients, and
+      their pets.
+    encryption: none
+    id: ta-18
+    integrity: important
+    internet: true
+    justification_cia_rating: Some Justification
+    justification_out_of_scope: ''
+    machine: virtual
+    multi_tenant: false
+    out_of_scope: false
+    owner: Some Owner
+    redundant: false
+    size: component
+    tags:
+    - Element
+    - Component
+    technology: web-server
+    type: process
+    usage: business
+    used_as_client_by_human: true
+  Database:
+    availability: important
+    communication_links: {}
+    confidentiality: confidential
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted: []
+    description: Stores information regarding the veterinarians, the clients, and
+      their pets.
+    encryption: none
+    id: ta-3
+    integrity: important
+    internet: true
+    justification_cia_rating: Some Justification
+    justification_out_of_scope: ''
+    machine: virtual
+    multi_tenant: false
+    out_of_scope: false
+    owner: Some Owner
+    redundant: false
+    size: application
+    tags:
+    - Element
+    - Container
+    - Database
+    technology: web-server
+    type: process
+    usage: business
+    used_as_client_by_human: true
+  Web Application:
+    availability: important
+    communication_links:
+      to-ta-3:
+        authentication: none
+        authorization: none
+        data_assets_received: []
+        data_assets_sent: []
+        description: Reads from and writes to
+        ip_filtered: false
+        protocol: odbc-encrypted
+        readonly: false
+        tags: []
+        target: ta-3
+        usage: business
+        vpn: false
+    confidentiality: confidential
+    custom_developed_parts: false
+    data_assets_processed: []
+    data_assets_stored: []
+    data_formats_accepted: []
+    description: Allows employees to view and manage information regarding the veterinarians,
+      the clients, and their pets.
+    encryption: none
+    id: ta-2
+    integrity: important
+    internet: true
+    justification_cia_rating: Some Justification
+    justification_out_of_scope: ''
+    machine: virtual
+    multi_tenant: false
+    out_of_scope: false
+    owner: Some Owner
+    redundant: false
+    size: application
+    tags:
+    - Element
+    - Container
+    - Application
+    technology: web-server
+    type: process
+    usage: business
+    used_as_client_by_human: true
+technical_overview:
+  description: Some more <i>demo text</i> here and even images...
+  images: []
+threagile_version: 1.0.0
+title: Generated Threagile Model
+trust_boundaries:
+  software-system-ta-1:
+    data_assets: null
+    description: Inside software system which Allows employees to view and manage
+      information regarding the veterinarians, the clients, and their pets.
+    id: tb-1
+    tags: null
+    type: execution-environment
+    technical_assets_inside:
+    - ta-2
+    - ta-3
+    - ta-18
+    - ta-1
+    trust_boundaries_nested: null

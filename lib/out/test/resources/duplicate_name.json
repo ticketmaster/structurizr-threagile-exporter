@@ -1,0 +1,30 @@
+{
+    "id": "1",
+    "name": "Example of duplicated names",
+    "description": "This is an example of a duplicated name",
+    "model": {
+        "softwareSystems": [
+            {
+                "id": "1",
+                "name": "The Application",
+                "description": "Description of Software System 1",
+                "containers": [
+                    {
+                        "id": "2",
+                        "name": "The Application",
+                        "description": "Description of Container 1",
+                        "technology": "Java and Spring MVC",
+                        "components": [
+                            {
+                                "id": "3",
+                                "name": "The Application",
+                                "description": "Description of Component 1",
+                                "technology": "Java and Spring MVC"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
