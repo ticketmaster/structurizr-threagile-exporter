@@ -34,7 +34,7 @@ dependencies {
     implementation(libs.structurizr.export)
     testImplementation(libs.structurizr.client)
 
-    implementation("org.yaml:snakeyaml:2.2")
+    implementation("org.yaml:snakeyaml:2.3")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
